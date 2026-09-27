@@ -1,0 +1,1371 @@
+---
+bibliography: references.bib
+csl: https://www.zotero.org/styles/chicago-author-date
+citeproc: true
+
+lang: en-US
+number-sections: false
+format-links: false
+
+format:
+
+  # ============================================================
+  # PDF — LATEX / XELATEX
+  # ============================================================
+
+  pdf:
+    pdf-engine: xelatex
+    documentclass: article
+    fontsize: 12pt
+    papersize: letter
+    mainfont: "Times New Roman"
+
+    indent: true
+    block-headings: false
+
+    geometry:
+      - margin=1in
+
+    hyperrefoptions:
+      - hidelinks
+
+    keep-tex: true
+
+    include-in-header:
+      text: |
+        \usepackage{setspace}
+        \usepackage{fancyhdr}
+        \usepackage{titlesec}
+        \usepackage{indentfirst}
+
+        % ========================================================
+        % BODY
+        % ========================================================
+
+        \doublespacing
+
+        \setlength{\parindent}{0.5in}
+        \setlength{\parskip}{0pt}
+
+        % ========================================================
+        % PAGE NUMBERS
+        %
+        % Title page:
+        %   no visible number
+        %
+        % First actual text page:
+        %   Arabic page 1, upper right
+        % ========================================================
+
+        \setlength{\headheight}{15pt}
+
+        \pagestyle{fancy}
+        \fancyhf{}
+        \fancyhead[R]{\thepage}
+
+        \renewcommand{\headrulewidth}{0pt}
+        \renewcommand{\footrulewidth}{0pt}
+
+        \fancypagestyle{plain}{
+          \fancyhf{}
+          \fancyhead[R]{\thepage}
+          \renewcommand{\headrulewidth}{0pt}
+          \renewcommand{\footrulewidth}{0pt}
+        }
+
+        % ========================================================
+        % FIVE-LEVEL HEADING SYSTEM
+        %
+        % Level 1 = centered, bold
+        % Level 2 = centered, regular
+        % Level 3 = flush left, italic
+        % Level 4 = flush left, regular
+        % Level 5 = run-in, italic, terminal period
+        % ========================================================
+
+        \titleformat{\section}[block]
+          {\normalfont\normalsize\bfseries\centering}
+          {}
+          {0pt}
+          {}
+
+        \titleformat{\subsection}[block]
+          {\normalfont\normalsize\centering}
+          {}
+          {0pt}
+          {}
+
+        \titleformat{\subsubsection}[block]
+          {\normalfont\normalsize\itshape}
+          {}
+          {0pt}
+          {}
+
+        \titleformat{\paragraph}[block]
+          {\normalfont\normalsize}
+          {}
+          {0pt}
+          {}
+
+        \titleformat{\subparagraph}[runin]
+          {\normalfont\normalsize\itshape}
+          {}
+          {0pt}
+          {}
+          [.]
+
+        % ========================================================
+        % HEADING SPACING
+        % ========================================================
+
+        \titlespacing{\section}
+          {0pt}
+          {\baselineskip}
+          {\baselineskip}
+
+        \titlespacing{\subsection}
+          {0pt}
+          {\baselineskip}
+          {\baselineskip}
+
+        \titlespacing{\subsubsection}
+          {0pt}
+          {\baselineskip}
+          {\baselineskip}
+
+        \titlespacing{\paragraph}
+          {0pt}
+          {\baselineskip}
+          {\baselineskip}
+
+        \titlespacing{\subparagraph}
+          {0pt}
+          {\baselineskip}
+          {0.5em}
+
+        % ========================================================
+        % BLOCK QUOTATIONS
+        %
+        % Single spaced internally.
+        % 0.5-inch left indent.
+        % Same 12-point type.
+        % ========================================================
+
+        \renewenvironment{quote}
+          {
+            \par
+            \addvspace{\baselineskip}
+            \begin{singlespace}
+            \begin{list}{}{%
+              \setlength{\leftmargin}{0.5in}%
+              \setlength{\rightmargin}{0in}%
+              \setlength{\topsep}{0pt}%
+              \setlength{\partopsep}{0pt}%
+              \setlength{\parsep}{0pt}%
+              \setlength{\itemsep}{0pt}%
+            }
+            \item\relax
+          }
+          {
+            \end{list}
+            \end{singlespace}
+            \par
+            \addvspace{\baselineskip}
+          }
+
+        % ========================================================
+        % REFERENCES
+        %
+        % 0.5-inch hanging indent.
+        % CSL controls spacing between entries.
+        % ========================================================
+
+        \setlength{\cslhangindent}{0.5in}
+
+        \renewenvironment{CSLReferences}[2]
+          {\begin{list}{}{%
+            \setlength{\itemindent}{0pt}%
+            \setlength{\leftmargin}{0pt}%
+            \setlength{\rightmargin}{0pt}%
+            \setlength{\parsep}{0pt}%
+            \setlength{\topsep}{0pt}%
+            \setlength{\partopsep}{0pt}%
+            \ifodd #1%
+              \setlength{\leftmargin}{\cslhangindent}%
+              \setlength{\itemindent}{-1\cslhangindent}%
+            \fi%
+            \setlength{\itemsep}{#2\baselineskip}%
+          }}
+          {\end{list}}
+
+  # ============================================================
+  # MICROSOFT WORD
+  #
+  # IMPORTANT:
+  #
+  # cmos-reference.docx MUST be in the same directory.
+  #
+  # Create a Pandoc reference file initially with:
+  #
+  # quarto pandoc -o cmos-reference.docx \
+  #   --print-default-data-file reference.docx
+  #
+  # Then modify its styles in Word.
+  #
+  # REQUIRED WORD DOCUMENT SETTINGS
+  #
+  # Page:
+  #   Letter, 8.5 x 11
+  #   1-inch margins
+  #
+  # Header:
+  #   Different First Page = ON
+  #   first-page header = empty
+  #   normal header = page number right aligned
+  #
+  # Numbering:
+  #   arrange numbering so physical page 2 displays Arabic 1
+  #
+  # Normal:
+  #   Times New Roman
+  #   12 pt
+  #   double line spacing
+  #   first-line indent = 0.5 inch
+  #   0 pt before
+  #   0 pt after
+  #
+  # Body Text:
+  #   same as Normal
+  #
+  # First Paragraph:
+  #   same as Normal
+  #
+  # Heading 1:
+  #   TNR 12
+  #   bold
+  #   centered
+  #   double spaced
+  #
+  # Heading 2:
+  #   TNR 12
+  #   regular
+  #   centered
+  #   double spaced
+  #
+  # Heading 3:
+  #   TNR 12
+  #   italic
+  #   flush left
+  #   double spaced
+  #
+  # Heading 4:
+  #   TNR 12
+  #   regular
+  #   flush left
+  #   double spaced
+  #
+  # Block Text:
+  #   TNR 12
+  #   single spaced
+  #   left indent = 0.5 inch
+  #   no first-line indent
+  #
+  # Bibliography:
+  #   TNR 12
+  #   single spaced
+  #   hanging indent = 0.5 inch
+  #   one blank line between entries
+  #
+  # CMOS Title:
+  #   TNR 12
+  #   regular
+  #   centered
+  #   double spaced
+  #   no indent
+  #   approximately 2.67 inches before
+  #   approximately 2.67 inches after
+  #
+  # CMOS Title Info:
+  #   TNR 12
+  #   regular
+  #   centered
+  #   double spaced
+  #   no indent
+  #
+  # CMOS References Heading:
+  #   TNR 12
+  #   regular
+  #   centered
+  #   single spaced
+  #   no indent
+  #   approximately two blank lines after
+  # ============================================================
+
+  docx:
+    toc: false
+    reference-doc: cmos-reference.docx
+
+  # ============================================================
+  # OPENDOCUMENT / LIBREOFFICE
+  #
+  # Content and page breaks will work.
+  #
+  # For exact ODT styling, use the same approach as Word with:
+  #
+  # reference-doc: cmos-reference.odt
+  #
+  # ============================================================
+
+  odt:
+    toc: false
+
+  # ============================================================
+  # HTML
+  # ============================================================
+
+  html:
+    toc: false
+    theme: default
+    mainfont: "Times New Roman"
+    fontsize: 12pt
+    linestretch: 2
+    page-layout: article
+
+    include-in-header:
+      text: |
+        <style>
+
+        html,
+        body {
+          font-family: "Times New Roman", Times, serif;
+          font-size: 12pt;
+          line-height: 2;
+          color: black;
+          background: white;
+        }
+
+        main.content,
+        #quarto-content {
+          max-width: 6.5in;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        p {
+          margin-top: 0;
+          margin-bottom: 0;
+          text-indent: 0.5in;
+        }
+
+        /* TITLE PAGE */
+
+        .cmos-title-page {
+          box-sizing: border-box;
+          min-height: 9in;
+          padding-top: 2.67in;
+          text-align: center;
+          break-after: page;
+          page-break-after: always;
+        }
+
+        .cmos-title-page p,
+        .cmos-title-page div {
+          text-indent: 0;
+        }
+
+        .cmos-paper-title {
+          margin: 0 0 2.67in 0;
+          font-family: "Times New Roman", Times, serif;
+          font-size: 12pt;
+          font-weight: normal;
+          font-style: normal;
+          line-height: 2;
+          text-align: center;
+        }
+
+        .cmos-paper-info {
+          margin: 0;
+          font-family: "Times New Roman", Times, serif;
+          font-size: 12pt;
+          font-weight: normal;
+          font-style: normal;
+          line-height: 2;
+          text-align: center;
+        }
+
+        /* HEADINGS */
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+          font-family: "Times New Roman", Times, serif;
+          font-size: 12pt;
+          line-height: 2;
+          color: black;
+          border: none;
+          padding: 0;
+          margin-top: 1em;
+          margin-bottom: 1em;
+        }
+
+        h1 {
+          text-align: center;
+          font-weight: bold;
+          font-style: normal;
+        }
+
+        h2 {
+          text-align: center;
+          font-weight: normal;
+          font-style: normal;
+        }
+
+        h3 {
+          text-align: left;
+          font-weight: normal;
+          font-style: italic;
+        }
+
+        h4 {
+          text-align: left;
+          font-weight: normal;
+          font-style: normal;
+        }
+
+        h5 {
+          text-align: left;
+          font-weight: normal;
+          font-style: italic;
+        }
+
+        /* BLOCK QUOTATIONS */
+
+        blockquote {
+          margin-top: 1em;
+          margin-bottom: 1em;
+          margin-left: 0.5in;
+          margin-right: 0;
+          padding: 0;
+          border-left: none;
+          font-family: "Times New Roman", Times, serif;
+          font-size: 12pt;
+          line-height: 1;
+          color: black;
+        }
+
+        blockquote p {
+          text-indent: 0;
+        }
+
+        /* REFERENCES */
+
+        .cmos-references-heading {
+          font-family: "Times New Roman", Times, serif;
+          font-size: 12pt;
+          font-weight: normal;
+          font-style: normal;
+          line-height: 1;
+          text-align: center;
+          margin-top: 0;
+          margin-bottom: 2em;
+        }
+
+        #refs,
+        #refs .csl-bib-body {
+          font-family: "Times New Roman", Times, serif;
+          font-size: 12pt;
+          line-height: 1;
+        }
+
+        #refs .csl-entry {
+          margin-left: 0.5in;
+          text-indent: -0.5in;
+          margin-top: 0;
+          margin-bottom: 1em;
+        }
+
+        </style>
+
+  # ============================================================
+  # EPUB
+  # ============================================================
+
+  epub:
+    epub-title-page: false
+
+    include-in-header:
+      text: |
+        <style>
+
+        body {
+          font-family: "Times New Roman", Times, serif;
+          font-size: 12pt;
+          line-height: 2;
+        }
+
+        p {
+          margin-top: 0;
+          margin-bottom: 0;
+          text-indent: 0.5in;
+        }
+
+        .cmos-title-page {
+          min-height: 9in;
+          padding-top: 2.67in;
+          text-align: center;
+          break-after: page;
+          page-break-after: always;
+        }
+
+        .cmos-title-page p,
+        .cmos-title-page div {
+          text-indent: 0;
+        }
+
+        .cmos-paper-title {
+          margin-bottom: 2.67in;
+          text-align: center;
+          line-height: 2;
+        }
+
+        .cmos-paper-info {
+          text-align: center;
+          line-height: 2;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+          font-family: "Times New Roman", Times, serif;
+          font-size: 12pt;
+          line-height: 2;
+          margin-top: 1em;
+          margin-bottom: 1em;
+        }
+
+        h1 {
+          text-align: center;
+          font-weight: bold;
+        }
+
+        h2 {
+          text-align: center;
+          font-weight: normal;
+        }
+
+        h3 {
+          text-align: left;
+          font-weight: normal;
+          font-style: italic;
+        }
+
+        h4 {
+          text-align: left;
+          font-weight: normal;
+          font-style: normal;
+        }
+
+        h5 {
+          text-align: left;
+          font-weight: normal;
+          font-style: italic;
+        }
+
+        blockquote {
+          margin-left: 0.5in;
+          margin-right: 0;
+          padding: 0;
+          border: none;
+          line-height: 1;
+        }
+
+        blockquote p {
+          text-indent: 0;
+        }
+
+        .cmos-references-heading {
+          text-align: center;
+          line-height: 1;
+          margin-bottom: 2em;
+        }
+
+        #refs,
+        #refs .csl-bib-body {
+          line-height: 1;
+        }
+
+        #refs .csl-entry {
+          margin-left: 0.5in;
+          text-indent: -0.5in;
+          margin-bottom: 1em;
+        }
+
+        </style>
+
+  # ============================================================
+  # TYPST PDF
+  # ============================================================
+
+  typst:
+    papersize: us-letter
+    mainfont: "Times New Roman"
+    fontsize: 12pt
+    linestretch: 2
+
+    margin:
+      top: 1in
+      bottom: 1in
+      left: 1in
+      right: 1in
+
+    include-in-header:
+      text: |
+        #show heading.where(level: 1): set align(center)
+        #show heading.where(level: 1): set text(
+          size: 12pt,
+          weight: "bold",
+          style: "normal"
+        )
+
+        #show heading.where(level: 2): set align(center)
+        #show heading.where(level: 2): set text(
+          size: 12pt,
+          weight: "regular",
+          style: "normal"
+        )
+
+        #show heading.where(level: 3): set text(
+          size: 12pt,
+          weight: "regular",
+          style: "italic"
+        )
+
+        #show heading.where(level: 4): set text(
+          size: 12pt,
+          weight: "regular",
+          style: "normal"
+        )
+
+        #show heading.where(level: 5): set text(
+          size: 12pt,
+          weight: "regular",
+          style: "italic"
+        )
+
+---
+
+<!-- ============================================================
+TITLE PAGE — LATEX PDF
+=============================================================== -->
+
+::: {.content-visible when-format="pdf"}
+
+```{=latex}
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+% Title approximately one-third down the physical page.
+
+\vspace*{0.30\textheight}
+
+{\centering
+
+Your Paper Title\par
+
+% Purdue says the identifying information should appear
+% "several lines later."
+%
+% Eight double-spaced baselines is being used as a visual
+% implementation of the sample, not as an independent
+% Chicago rule.
+
+\vspace{8\baselineskip}
+
+Your Name\par
+Course Number: Course Name\par
+Month Day, Year\par
+
+}
+
+\end{titlepage}
+
+% First page of actual text = page 1.
+
+\setcounter{page}{1}
+```
+
+:::
+
+
+<!-- ============================================================
+TITLE PAGE — MICROSOFT WORD
+=============================================================== -->
+
+::: {.content-visible when-format="docx"}
+
+::: {custom-style="CMOS Title"}
+Your Paper Title
+:::
+
+::: {custom-style="CMOS Title Info"}
+Your Name  
+Course Number: Course Name  
+Month Day, Year
+:::
+
+{{< pagebreak >}}
+
+:::
+
+
+<!-- ============================================================
+TITLE PAGE — ODT
+=============================================================== -->
+
+::: {.content-visible when-format="odt"}
+
+::: {custom-style="CMOS Title"}
+Your Paper Title
+:::
+
+::: {custom-style="CMOS Title Info"}
+Your Name  
+Course Number: Course Name  
+Month Day, Year
+:::
+
+{{< pagebreak >}}
+
+:::
+
+
+<!-- ============================================================
+TITLE PAGE — HTML / EPUB
+=============================================================== -->
+
+::: {.content-visible when-format="html"}
+
+::: {.cmos-title-page}
+
+::: {.cmos-paper-title}
+Your Paper Title
+:::
+
+::: {.cmos-paper-info}
+Your Name  
+Course Number: Course Name  
+Month Day, Year
+:::
+
+:::
+
+{{< pagebreak >}}
+
+:::
+
+
+<!-- ============================================================
+TITLE PAGE — TYPST
+=============================================================== -->
+
+::: {.content-visible when-format="typst"}
+
+```{=typst}
+#set page(numbering: none)
+
+#v(30%)
+
+#align(center)[
+Your Paper Title
+
+#v(192pt)
+
+Your Name \
+Course Number: Course Name \
+Month Day, Year
+]
+
+#pagebreak()
+
+#counter(page).update(1)
+
+#set page(
+  numbering: "1",
+  number-align: right + top
+)
+```
+
+:::
+
+
+<!-- ============================================================
+BODY
+=============================================================== -->
+
+Start writing your paper here. Normal body text is 12-point Times New
+Roman, double-spaced, with one-inch margins in paged document formats
+and a half-inch first-line paragraph indent.
+
+A standard Chicago 18 author-date citation looks like this
+[@smith2024, 42].
+
+Another source can be cited like this [@jones2022, 220].
+
+For a narrative citation, @smith2024 [42] argues that the evidence
+supports this interpretation.
+
+This is another paragraph so you can verify ordinary paragraph
+indentation and line spacing.
+
+```{r}
+if (!require("pacman")) 
+  install.packages("pacman")
+
+library(pacman)
+
+pacman::p_load(
+  ggplot2,
+  ggtext
+)
+```
+
+
+```{r}
+# https://advance.lexis.com/api/permalink/5bbd017c-bb50-4cb5-a4fa-0d2066a1d2de/?context=1519360&identityprofileid=BQ226N51782
+
+DATA_FILE <- "CoverageoverTime_FlockcameraORFlockcamerasORFlockSafety.csv"
+
+lexis_coverage_raw <- read.csv2(
+  DATA_FILE,
+  check.names = FALSE,
+  fileEncoding = "UTF-8-BOM"
+)
+
+lexis_coverage_monthly <- data.frame(
+  month = as.Date(substr(
+    lexis_coverage_raw[["Coverage over Time"]], 1, 10
+  )),
+  articles = as.integer(lexis_coverage_raw[["Coverage"]])
+)
+
+lexis_coverage_complete <- subset(
+  lexis_coverage_monthly,
+  month <= as.Date("2026-08-01")
+)
+
+lexis_coverage_september_segment <- subset(
+  lexis_coverage_monthly,
+  month >= as.Date("2026-08-01")
+)
+
+lexis_coverage_september <- subset(
+  lexis_coverage_monthly,
+  month == as.Date("2026-09-01")
+)
+
+plot_lexis_coverage_monthly <- ggplot(
+  lexis_coverage_monthly,
+  aes(x = month, y = articles)
+) +
+  geom_line(
+    data = lexis_coverage_complete,
+    color = "#00A693",
+    linewidth = 1
+  ) +
+  geom_line(
+    data = lexis_coverage_september_segment,
+    color = "#00A693",
+    linewidth = 1,
+    linetype = "dashed"
+  ) +
+  geom_point(
+    data = lexis_coverage_complete,
+    color = "#00A693",
+    size = 2.3
+  ) +
+  geom_point(
+    data = lexis_coverage_september,
+    color = "#00A693",
+    fill = "white",
+    shape = 21,
+    size = 2.8,
+    stroke = 1
+  ) +
+  scale_x_date(
+    date_breaks = "1 month",
+    date_labels = "%b %Y"
+  ) +
+  scale_y_continuous(
+    breaks = c(
+      min(lexis_coverage_monthly$articles),
+      1000, 2000, 3000, 4000
+    ),
+    labels = scales::label_comma(),
+    limits = c(min(lexis_coverage_monthly$articles), 4500),
+    expand = expansion(mult = c(0, 0))
+  ) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = paste(
+      "News Articles Mentioning Flock",
+      sep = "\n"
+    ),
+    subtitle = "Monthly Counts From a Nexis Uni News Search",
+    x = NULL,
+    y = "Number of Articles",
+    caption = paste(
+      "<b>Source:</b> Nexis Uni Analytics Export",
+      "<b>Search Terms:</b> Flock camera or Flock cameras or Flock Safety",
+      "<b>Note:</b> The dashed segment and open circle mark incomplete September results through September 27, 2026.",
+      sep = "<br>"
+    )
+  ) +
+  theme_minimal(
+    base_family = "Georgia",
+    base_size = 11
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    plot.caption = ggtext::element_markdown(hjust = 0, size = 9),
+    plot.caption.position = "plot"
+  )
+
+print(plot_lexis_coverage_monthly)
+
+ggsave(
+  file.path(dirname(DATA_FILE), "Coverage_Over_Time_Monthly.png"),
+  plot = plot_lexis_coverage_monthly,
+  width = 8.88,
+  height = 5.5,
+  units = "in",
+  dpi = 300,
+  device = ragg::agg_png
+)
+```
+
+```{r}
+# https://trends.google.com/explore?q=flock&date=2026-01-01%202026-09-27&geo=US
+
+DATA_FILE2 <- "time_series_US_20260101-0000_20260927-1417.csv"
+
+google_trends_raw <- read.csv(
+  DATA_FILE2,
+  check.names = FALSE,
+  fileEncoding = "UTF-8-BOM"
+)
+
+google_trends_weekly <- data.frame(
+  week = as.Date(google_trends_raw[["Time"]]),
+  search_interest = as.integer(google_trends_raw[["flock"]])
+)
+
+google_trends_weekly_by_day <- do.call(
+  rbind,
+  lapply(seq_len(nrow(google_trends_weekly)), function(i) {
+    data.frame(
+      date = seq(
+        google_trends_weekly$week[i],
+        google_trends_weekly$week[i] + 6,
+        by = "day"
+      ),
+      search_interest = google_trends_weekly$search_interest[i]
+    )
+  })
+)
+
+google_trends_weekly_by_day <- subset(
+  google_trends_weekly_by_day,
+  date >= as.Date("2026-01-01") &
+    date <= as.Date("2026-09-27")
+)
+
+google_trends_weekly_by_day$month <- as.Date(paste0(
+  format(google_trends_weekly_by_day$date, "%Y-%m"),
+  "-01"
+))
+
+google_trends_monthly <- aggregate(
+  search_interest ~ month,
+  data = google_trends_weekly_by_day,
+  FUN = mean
+)
+
+google_trends_monthly$month_label <- factor(
+  format(google_trends_monthly$month, "%b %Y"),
+  levels = format(
+    seq(as.Date("2026-01-01"), as.Date("2026-09-01"), by = "month"),
+    "%b %Y"
+  )
+)
+
+google_trends_complete_months <- subset(
+  google_trends_monthly,
+  month <= as.Date("2026-08-01")
+)
+
+google_trends_september_segment <- subset(
+  google_trends_monthly,
+  month >= as.Date("2026-08-01")
+)
+
+google_trends_september <- subset(
+  google_trends_monthly,
+  month == as.Date("2026-09-01")
+)
+
+plot_google_trends_monthly <- ggplot(
+  google_trends_monthly,
+  aes(x = month_label, y = search_interest, group = 1)
+) +
+  geom_line(
+    data = google_trends_complete_months,
+    color = "#00A693",
+    linewidth = 1
+  ) +
+  geom_line(
+    data = google_trends_september_segment,
+    color = "#00A693",
+    linewidth = 1,
+    linetype = "dashed"
+  ) +
+  geom_point(
+    data = google_trends_complete_months,
+    color = "#00A693",
+    size = 2.3
+  ) +
+  geom_point(
+    data = google_trends_september,
+    color = "#00A693",
+    fill = "white",
+    shape = 21,
+    size = 2.8,
+    stroke = 1
+  ) +
+  scale_x_discrete(
+    drop = FALSE,
+    expand = expansion(add = 0.2)
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 25, 50, 75, 100),
+    limits = c(0, 100),
+    expand = expansion(mult = c(0, 0))
+  ) +
+  labs(
+    title = "Google Search Interest in 'flock'",
+    subtitle = "Monthly Averages of Weekly Scores in the United States",
+    x = NULL,
+    y = "Relative Search Interest (0–100)",
+    caption = paste(
+      "<b>Source:</b> Google Trends, United States",
+      "<b>Search Term:</b> flock",
+      "<b>Method:</b> Weekly scores are weighted by the days they cover in each month.",
+      "<b>Note:</b> The dashed line and open circle mark September, which includes data through September 27, 2026.",
+      sep = "<br>"
+    )
+  ) +
+  theme_minimal(
+    base_family = "Georgia",
+    base_size = 11
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    plot.caption = ggtext::element_markdown(hjust = 0, size = 9),
+    plot.caption.position = "plot"
+  )
+
+print(plot_google_trends_monthly)
+
+ggsave(
+  file.path(dirname(DATA_FILE2), "Google_Search_Interest_Flock_Monthly.png"),
+  plot = plot_google_trends_monthly,
+  width = 8.88,
+  height = 5.5,
+  units = "in",
+  dpi = 300,
+  device = ragg::agg_png
+)
+```
+
+<!-- ============================================================
+LEVEL 1
+Centered
+Bold
+Headline-Style Capitalization
+=============================================================== -->
+
+# Contemporary Literature
+
+This demonstrates a Level 1 heading.
+
+
+<!-- ============================================================
+LEVEL 2
+Centered
+Regular
+Headline-Style Capitalization
+=============================================================== -->
+
+## What Are the Major Movements?
+
+This demonstrates a Level 2 heading.
+
+
+<!-- ============================================================
+LEVEL 3
+Flush left
+Italic
+Headline-Style Capitalization
+=============================================================== -->
+
+### Beat Generation
+
+This demonstrates a Level 3 heading.
+
+
+<!-- ============================================================
+LEVEL 4
+Flush left
+Regular
+Sentence-style capitalization
+=============================================================== -->
+
+#### Significant figures, events, and elements
+
+This demonstrates a Level 4 heading.
+
+
+<!-- ============================================================
+LEVEL 5
+
+For reliable visual consistency across PDF, Word, ODT,
+HTML, EPUB, and Typst, write Level 5 directly at the
+start of the paragraph in italics with a terminal period.
+
+This avoids Word treating Heading 5 as a separate block.
+=============================================================== -->
+
+*Kerouac as the leader.* The role of founding Beat Generation poet was
+filled by Jack Kerouac. This Level 5 heading remains run-in across the
+major output formats.
+
+
+<!-- ============================================================
+BLOCK QUOTATION
+=============================================================== -->
+
+# Block Quotation Example
+
+Normal double-spaced body text appears before the block quotation.
+
+> This is an example of a block quotation. A prose quotation of five or
+> more lines or more than one hundred words should be blocked. It begins
+> on a new line, appears without quotation marks, is indented from the
+> left margin, and is single-spaced. [@smith2024, 50]
+
+Normal double-spaced body text resumes here.
+
+
+<!-- ============================================================
+CONCLUSION
+=============================================================== -->
+
+# Conclusion
+
+Write your conclusion here.
+
+
+<!-- ============================================================
+REFERENCES — PDF
+=============================================================== -->
+
+::: {.content-visible when-format="pdf"}
+
+```{=latex}
+\newpage
+
+\begin{singlespace}
+
+\noindent\makebox[\textwidth][c]{References}\par
+
+% Two blank lines between heading and first entry.
+
+\vspace{2\baselineskip}
+```
+
+:::
+
+
+<!-- ============================================================
+REFERENCES — WORD
+=============================================================== -->
+
+::: {.content-visible when-format="docx"}
+
+{{< pagebreak >}}
+
+::: {custom-style="CMOS References Heading"}
+References
+:::
+
+:::
+
+
+<!-- ============================================================
+REFERENCES — ODT
+=============================================================== -->
+
+::: {.content-visible when-format="odt"}
+
+{{< pagebreak >}}
+
+::: {custom-style="CMOS References Heading"}
+References
+:::
+
+:::
+
+
+<!-- ============================================================
+REFERENCES — HTML / EPUB
+=============================================================== -->
+
+::: {.content-visible when-format="html"}
+
+{{< pagebreak >}}
+
+::: {.cmos-references-heading}
+References
+:::
+
+:::
+
+
+<!-- ============================================================
+REFERENCES — TYPST
+=============================================================== -->
+
+::: {.content-visible when-format="typst"}
+
+```{=typst}
+#pagebreak()
+#align(center)[References]
+#v(2em)
+```
+
+:::
+
+
+<!-- ============================================================
+CITATION PROCESSOR INSERTS REFERENCES HERE
+=============================================================== -->
+
+::: {#refs}
+:::
+
+
+<!-- ============================================================
+END PDF REFERENCE SPACING
+=============================================================== -->
+
+::: {.content-visible when-format="pdf"}
+
+```{=latex}
+\end{singlespace}
+```
+
+:::
+
+
+<!-- ============================================================
+OPTIONAL FOOTNOTES
+===============================================================
+
+Author-Date papers may still use footnotes for supplemental commentary.
+
+Quarto syntax:
+
+Here is a sentence with a supplemental note.^[This is the footnote text.]
+
+=============================================================== -->
+
+
+<!-- ============================================================
+TABLES AND FIGURES
+===============================================================
+
+Place tables and figures as soon as practical after they are first
+mentioned.
+
+For figures, include a figure number and caption.
+
+If material is reproduced or adapted from another source, provide
+an appropriate source or credit line and include the source in the
+References list when applicable.
+
+=============================================================== -->
+
+
+<!-- ============================================================
+CHECKLIST
+===============================================================
+
+BODY
+- Times New Roman, 12 pt
+- 1-inch margins in paged formats
+- Double-spaced normal body text
+- 0.5-inch first-line indent
+- No extra paragraph spacing
+
+PDF PAGINATION
+- No visible number on title page
+- First actual text page = Arabic 1
+- Page number upper right
+
+WORD PAGINATION
+- Controlled by cmos-reference.docx
+- Different First Page enabled
+- Title page header blank
+- Subsequent page numbers upper right
+- First text page displays 1
+
+TITLE PAGE
+- Title approximately one-third down page
+- Regular 12-point type
+- Not all caps
+- Identifying information several lines later
+- Eight-baseline PDF gap is a visual implementation choice
+
+HEADINGS
+- Level 1: centered, bold
+- Level 2: centered, regular
+- Level 3: flush left, italic
+- Level 4: flush left, regular
+- Level 5: run-in, italic, terminal period
+
+BLOCK QUOTATIONS
+- New line
+- No quotation marks
+- Single spaced
+- 0.5-inch left indent
+
+REFERENCES
+- Heading = References
+- Heading centered
+- Two blank lines before first entry
+- Entries single spaced internally
+- One blank line between entries
+- 0.5-inch hanging indent
+- Chicago author-date CSL handles bibliography formatting
+
+=============================================================== -->
