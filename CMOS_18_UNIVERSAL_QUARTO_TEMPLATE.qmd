@@ -9,6 +9,7 @@ format-links: false
 
 execute:
   echo: false
+  message: false
 
 format:
 
@@ -826,7 +827,7 @@ This is another paragraph so you can verify ordinary paragraph
 indentation and line spacing.
 
 ```{r}
-if (!require("pacman")) 
+if (!requireNamespace("pacman", quietly = TRUE))
   install.packages("pacman")
 
 library(pacman)
