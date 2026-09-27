@@ -1103,6 +1103,161 @@ ggsave(
 )
 ```
 
+```{r}
+library(ggplot2)
+
+# Published percentages:
+# https://yougov.com/en-us/daily-results/20250904-67d37-1
+# https://yougov.com/en-us/daily-results/20260824-a9b53-1
+# https://www.filesforprogress.org/datasets/2026/9/dfp_flock_cameras_tabs.pdf
+
+OUTPUT_DIRECTORY <- "/Users/anton/Downloads"
+
+yougov_license_plate_reader_percentages <- data.frame(
+  response_category = factor(
+    rep(c("Support", "Oppose", "Not Sure"), times = 2),
+    levels = c("Support", "Oppose", "Not Sure")
+  ),
+  survey_label = factor(
+    rep(c("Sep 2025", "Aug 2026"), each = 3),
+    levels = c("Sep 2025", "Aug 2026")
+  ),
+  response_percentage = c(45, 33, 21, 38, 46, 17)
+)
+
+plot_yougov_license_plate_reader_opinions <- ggplot(
+  yougov_license_plate_reader_percentages,
+  aes(x = response_category, y = response_percentage, fill = survey_label)
+) +
+  geom_col(
+    position = position_dodge(width = 0.7),
+    width = 0.58
+  ) +
+  geom_text(
+    aes(label = paste0(response_percentage, "%")),
+    position = position_dodge(width = 0.7),
+    vjust = -0.45,
+    family = "Georgia",
+    size = 3.5
+  ) +
+  scale_fill_manual(
+    values = c("Sep 2025" = "#98A6AD", "Aug 2026" = "#00A693")
+  ) +
+  scale_x_discrete(
+    expand = expansion(add = 0.4)
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 10, 20, 30, 40, 50),
+    labels = function(x) paste0(x, "%"),
+    limits = c(0, 55),
+    expand = expansion(mult = c(0, 0))
+  ) +
+  labs(
+    title = "Opinions on Using Automated License Plate Readers for Law Enforcement",
+    subtitle = "YouGov Surveys of U.S. Adults, September 2025 and August 2026",
+    x = NULL,
+    y = "Percent of U.S. Adults",
+    fill = NULL,
+    caption = paste(
+      "<b>Source:</b> YouGov Daily Questions (Sep 4, 2025: n = 8,832; Aug 24, 2026: n = 20,563).",
+      "<b>Question:</b> Support or oppose automated license plate readers for law enforcement in your community.",
+      "<b>Note:</b> Support and oppose combine strongly and somewhat responses. Totals may differ from 100% because of rounding.",
+      sep = "<br>"
+    )
+  ) +
+  theme_minimal(
+    base_family = "Georgia",
+    base_size = 11
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    legend.position = "top",
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    plot.caption = ggtext::element_markdown(hjust = 0, size = 9),
+    plot.caption.position = "plot"
+  )
+
+print(plot_yougov_license_plate_reader_opinions)
+
+ggsave(
+  file.path(dirname(DATA_FILE2), "YouGov_ALPR_Poll_2025_2026.png"),
+  plot = plot_yougov_license_plate_reader_opinions,
+  width = 8.88,
+  height = 5.5,
+  units = "in",
+  dpi = 300,
+  device = ragg::agg_png
+)
+
+data_for_progress_flock_percentages <- data.frame(
+  survey_start = as.Date(c("2026-08-21", "2026-09-11", "2026-09-18")),
+  survey_label = c("Aug 21–24", "Sep 11–14", "Sep 18–20"),
+  unfavorable_percentage = c(41, 47, 52)
+)
+
+plot_data_for_progress_flock_unfavorable <- ggplot(
+  data_for_progress_flock_percentages,
+  aes(x = survey_start, y = unfavorable_percentage)
+) +
+  geom_line(color = "#00A693", linewidth = 1) +
+  geom_point(color = "#00A693", size = 2.3) +
+  geom_text(
+    aes(label = paste0(unfavorable_percentage, "%")),
+    vjust = -0.8,
+    family = "Georgia",
+    size = 3.5
+  ) +
+  scale_x_date(
+    breaks = data_for_progress_flock_percentages$survey_start,
+    labels = data_for_progress_flock_percentages$survey_label,
+    limits = as.Date(c("2026-08-17", "2026-09-22")),
+    expand = expansion(mult = c(0, 0))
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 20, 40, 60),
+    labels = function(x) paste0(x, "%"),
+    limits = c(0, 60),
+    expand = expansion(mult = c(0, 0))
+  ) +
+  labs(
+    title = "Unfavorable Views of Flock Cameras",
+    subtitle = "Data for Progress Surveys of U.S. Likely Voters, August–September 2026",
+    x = NULL,
+    y = "Percent Unfavorable",
+    caption = paste(
+      "<b>Source:</b> Data for Progress survey tables (Aug 21–24: n = 1,175; Sep 11–14: n = 1,214; Sep 18–20: n = 1,194).",
+      "<b>Question:</b> Favorable or unfavorable view of Flock Safety surveillance cameras.",
+      "<b>Note:</b> Each point represents a separate survey of likely voters; dates show fieldwork periods.",
+      sep = "<br>"
+    )
+  ) +
+  theme_minimal(
+    base_family = "Georgia",
+    base_size = 11
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    plot.caption = ggtext::element_markdown(hjust = 0, size = 9),
+    plot.caption.position = "plot"
+  )
+
+print(plot_data_for_progress_flock_unfavorable)
+
+ggsave(
+  file.path(dirname(DATA_FILE2), "Data_For_Progress_Flock_Poll_Aug_Sep_2026.png"),
+  plot = plot_data_for_progress_flock_unfavorable,
+  width = 8.88,
+  height = 5.5,
+  units = "in",
+  dpi = 300,
+  device = ragg::agg_png
+)
+
+```
+
 <!-- ============================================================
 LEVEL 1
 Centered
