@@ -7,6 +7,9 @@ lang: en-US
 number-sections: false
 format-links: false
 
+execute:
+  echo: false
+
 format:
 
   # ============================================================
