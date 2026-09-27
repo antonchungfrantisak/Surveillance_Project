@@ -832,6 +832,8 @@ pacman::p_load(
   ggplot2,
   ggtext
 )
+
+knitr::opts_chunk$set(dev = "ragg_png")
 ```
 
 
