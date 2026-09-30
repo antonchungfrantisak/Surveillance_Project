@@ -1160,8 +1160,7 @@ plot_yougov_license_plate_reader_opinions <- ggplot(
     fill = NULL,
     caption = paste(
       "<b>Source:</b> YouGov Daily Questions (Sep 4, 2025: n = 8,832; Aug 24, 2026: n = 20,563).",
-      "<b>Question:</b> Support or oppose automated license plate readers for law enforcement in your community.",
-      "<b>Note:</b> Support and oppose combine strongly and somewhat responses. Totals may differ from 100% because of rounding.",
+      "<b>Question:</b> Would you support or oppose the use of automated license plate readers using computer‑controlled cameras for law enforcement purposes in your community?",
       sep = "<br>"
     )
   ) +
@@ -1217,7 +1216,7 @@ plot_data_for_progress_flock_unfavorable <- ggplot(
   scale_y_continuous(
     breaks = c(0, 20, 40, 60),
     labels = function(x) paste0(x, "%"),
-    limits = c(0, 60),
+    limits = c(30, 60),
     expand = expansion(mult = c(0, 0))
   ) +
   labs(
@@ -1227,8 +1226,7 @@ plot_data_for_progress_flock_unfavorable <- ggplot(
     y = "Percent Unfavorable",
     caption = paste(
       "<b>Source:</b> Data for Progress survey tables (Aug 21–24: n = 1,175; Sep 11–14: n = 1,214; Sep 18–20: n = 1,194).",
-      "<b>Question:</b> Favorable or unfavorable view of Flock Safety surveillance cameras.",
-      "<b>Note:</b> Each point represents a separate survey of likely voters; dates show fieldwork periods.",
+      "<b>Question:</b> Do you have a favorable or unfavorable opinion of the following people or institutions? (Flock Safety surveillance cameras)",
       sep = "<br>"
     )
   ) +
