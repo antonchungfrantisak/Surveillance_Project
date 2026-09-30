@@ -713,13 +713,13 @@ TITLE PAGE — MICROSOFT WORD
 ::: {.content-visible when-format="docx"}
 
 ::: {custom-style="CMOS Title"}
-Your Paper Title
+Why Has Fear Of Surveillance of Ordinary People for Law Enforcement Become More Prominent Among Some Americans?
 :::
 
 ::: {custom-style="CMOS Title Info"}
-Your Name  
-Course Number: Course Name  
-Month Day, Year
+Anton Chung Frantisak
+PSC 3500W: Fear and Politics
+September 9, 2026
 :::
 
 {{< pagebreak >}}
@@ -811,20 +811,11 @@ Month Day, Year
 BODY
 =============================================================== -->
 
-Start writing your paper here. Normal body text is 12-point Times New
-Roman, double-spaced, with one-inch margins in paged document formats
-and a half-inch first-line paragraph indent.
+# Introduction
 
-A standard Chicago 18 author-date citation looks like this
-[@smith2024, 42].
+With more than 120,000 cameras across more than 6,000 communities that record 20 billion license-plate scans per month, *Flock Safety*, or Flock, had marketed its system as an ideal tool for fighting crime like finding a stolen car carrying a 14-month-old child [@6AbductedChildren; @HowRogueOfficers]. But by using automated license plate readers (ALPRs) like Flock's massive camera network, at least 50 law-enforcement officers were able to track their subjects’ daily lives, such as to stalk women without their knowledge or consent [@HowRogueOfficers]. Such a polarizing tool—both used for very good and very bad—has faced overwhelming recent scrutiny from the populace, media, and politicians because it enables law enforcement to monitor ordinary people. This essay argues that the (1) media theory of fear, (2) political elite theory of fear, and (3) political culture theory of fear may help explain why fear of surveillance of ordinary people for law enforcement appears to have become more prominent among some Americans.
 
-Another source can be cited like this [@jones2022, 220].
-
-For a narrative citation, @smith2024 [42] argues that the evidence
-supports this interpretation.
-
-This is another paragraph so you can verify ordinary paragraph
-indentation and line spacing.
+This essay first introduces how interest in Flock has increased using Google Search data. It then explores polling data on Flock and ALPRs, the amount of news articles on Flock, and examples of political elites across the U.S. and political spectrum taking negative stances toward Flock. Last, it proposes three explanations for why this fear has become more prominent: (1) the media theory of fear; (2) the political elite theory of fear; and (3) the political culture theory of fear.
 
 ```{r}
 if (!requireNamespace("pacman", quietly = TRUE))
@@ -838,123 +829,6 @@ pacman::p_load(
 )
 
 knitr::opts_chunk$set(dev = "ragg_png")
-```
-
-
-```{r}
-# https://advance.lexis.com/api/permalink/5bbd017c-bb50-4cb5-a4fa-0d2066a1d2de/?context=1519360&identityprofileid=BQ226N51782
-
-DATA_FILE <- "CoverageoverTime_FlockcameraORFlockcamerasORFlockSafety.csv"
-
-lexis_coverage_raw <- read.csv2(
-  DATA_FILE,
-  check.names = FALSE,
-  fileEncoding = "UTF-8-BOM"
-)
-
-lexis_coverage_monthly <- data.frame(
-  month = as.Date(substr(
-    lexis_coverage_raw[["Coverage over Time"]], 1, 10
-  )),
-  articles = as.integer(lexis_coverage_raw[["Coverage"]])
-)
-
-lexis_coverage_complete <- subset(
-  lexis_coverage_monthly,
-  month <= as.Date("2026-08-01")
-)
-
-lexis_coverage_september_segment <- subset(
-  lexis_coverage_monthly,
-  month >= as.Date("2026-08-01")
-)
-
-lexis_coverage_september <- subset(
-  lexis_coverage_monthly,
-  month == as.Date("2026-09-01")
-)
-
-plot_lexis_coverage_monthly <- ggplot(
-  lexis_coverage_monthly,
-  aes(x = month, y = articles)
-) +
-  geom_line(
-    data = lexis_coverage_complete,
-    color = "#00A693",
-    linewidth = 1
-  ) +
-  geom_line(
-    data = lexis_coverage_september_segment,
-    color = "#00A693",
-    linewidth = 1,
-    linetype = "dashed"
-  ) +
-  geom_point(
-    data = lexis_coverage_complete,
-    color = "#00A693",
-    size = 2.3
-  ) +
-  geom_point(
-    data = lexis_coverage_september,
-    color = "#00A693",
-    fill = "white",
-    shape = 21,
-    size = 2.8,
-    stroke = 1
-  ) +
-  scale_x_date(
-    date_breaks = "1 month",
-    date_labels = "%b %Y"
-  ) +
-  scale_y_continuous(
-    breaks = c(
-      min(lexis_coverage_monthly$articles),
-      1000, 2000, 3000, 4000
-    ),
-    labels = scales::label_comma(),
-    limits = c(min(lexis_coverage_monthly$articles), 4500),
-    expand = expansion(mult = c(0, 0))
-  ) +
-  coord_cartesian(clip = "off") +
-  labs(
-    title = paste(
-      "News Articles Mentioning Flock",
-      sep = "\n"
-    ),
-    subtitle = "Monthly Counts From a Nexis Uni News Search",
-    x = NULL,
-    y = "Number of Articles",
-    caption = paste(
-      "<b>Source:</b> Nexis Uni Analytics Export",
-      "<b>Search Terms:</b> Flock camera or Flock cameras or Flock Safety",
-      "<b>Note:</b> The dashed segment and open circle mark incomplete September results through September 27, 2026.",
-      sep = "<br>"
-    )
-  ) +
-  theme_minimal(
-    base_family = "Georgia",
-    base_size = 11
-  ) +
-  theme(
-    plot.title = element_text(face = "bold", size = 14),
-    axis.text.x = element_text(angle = 45, hjust = 1),
-    panel.grid.minor = element_blank(),
-    panel.grid.major.x = element_blank(),
-    plot.caption = ggtext::element_markdown(hjust = 0, size = 9),
-    plot.caption.position = "plot"
-  )
-
-print(plot_lexis_coverage_monthly)
-
-ggsave(
-  file.path(dirname(DATA_FILE), "Coverage_Over_Time_Monthly.png"),
-  plot = plot_lexis_coverage_monthly,
-  width = 8.88,
-  height = 5.5,
-  units = "in",
-  dpi = 300,
-  device = ragg::agg_png
-)
 ```
 
 ```{r}
@@ -1103,6 +977,10 @@ ggsave(
 )
 ```
 
+# The Fear of Surveillance of Ordinary People for Law Enforcement
+Fear about surveillance of ordinary people for law enforcement gained renewed attention in Summer 2026 amid the debate over Flock Safety cameras (See Figure 1), but such concerns had already been expressed as early as 2012 by the ACLU [@WhatWeKnow2012]. The general concern is that law enforcement has misused and may continue to misuse surveillance of ordinary people for personal reasons or to monitor their lawful activities without a legitimate reason [@HowRogueOfficers]. As of late, (1) public opinion toward Flock has grown more negative, (2) news coverage about Flock has increased, and (3) political elites have criticized Flock.
+
+## Opinion Polls about Flock and ALPRs
 ```{r}
 library(ggplot2)
 
@@ -1177,8 +1055,6 @@ plot_yougov_license_plate_reader_opinions <- ggplot(
     plot.caption.position = "plot"
   )
 
-print(plot_yougov_license_plate_reader_opinions)
-
 ggsave(
   file.path(dirname(DATA_FILE2), "YouGov_ALPR_Poll_2025_2026.png"),
   plot = plot_yougov_license_plate_reader_opinions,
@@ -1243,6 +1119,7 @@ plot_data_for_progress_flock_unfavorable <- ggplot(
   )
 
 print(plot_data_for_progress_flock_unfavorable)
+print(plot_yougov_license_plate_reader_opinions)
 
 ggsave(
   file.path(dirname(DATA_FILE2), "Data_For_Progress_Flock_Poll_Aug_Sep_2026.png"),
@@ -1256,93 +1133,160 @@ ggsave(
 
 ```
 
-<!-- ============================================================
-LEVEL 1
-Centered
-Bold
-Headline-Style Capitalization
-=============================================================== -->
+The first piece of evidence is that negative public opinion toward Flock has increased recently (See Figure 2). Polling data shows that the percentage of surveyed Americans who viewed Flock unfavorably rose from 41 to 52 percent between late August and late September [@springsUnfavorableViewsFlock2026]. These descriptive data show that views of Flock cameras became more negative at the same time that search interest in Flock increased (See Figures 1–2). This pattern thus warrants a further investigation of the broader category to which Flock cameras belong—namely, ALPRs for law enforcement.
 
-# Contemporary Literature
+The descriptive data on Americans’ views of law enforcement's use of ALPRs like Flock cameras mirror the same shift in the negative direction observed in public opinion toward Flock (See Figure 3). Across two polls that asked an identical question in 2025 and 2026, opposition to law enforcement using ALPRs rose from 33 to 46 percent, whereas support for it fell from 45 to 38 percent [@WouldYouSupporta; @WouldYouSupport]. These data expand the descriptive trend established previously to law enforcement using ALPRs in general. Therefore, it seems that public opinion toward ALPRs became more negative in the second survey, in whose time frame Flock also became an important issue. Although these data cannot establish a causal link between Flock's salience and increasing opposition toward law enforcement's use of ALPRs, they indicate that the shift in opinion was not limited to Flock.
 
-This demonstrates a Level 1 heading.
+## Mentions of Flock in the Media
 
+```{r}
+# https://advance.lexis.com/api/permalink/5bbd017c-bb50-4cb5-a4fa-0d2066a1d2de/?context=1519360&identityprofileid=BQ226N51782
 
-<!-- ============================================================
-LEVEL 2
-Centered
-Regular
-Headline-Style Capitalization
-=============================================================== -->
+DATA_FILE <- "CoverageoverTime_FlockcameraORFlockcamerasORFlockSafety.csv"
 
-## What Are the Major Movements?
+lexis_coverage_raw <- read.csv2(
+  DATA_FILE,
+  check.names = FALSE,
+  fileEncoding = "UTF-8-BOM"
+)
 
-This demonstrates a Level 2 heading.
+lexis_coverage_monthly <- data.frame(
+  month = as.Date(substr(
+    lexis_coverage_raw[["Coverage over Time"]], 1, 10
+  )),
+  articles = as.integer(lexis_coverage_raw[["Coverage"]])
+)
 
+lexis_coverage_complete <- subset(
+  lexis_coverage_monthly,
+  month <= as.Date("2026-08-01")
+)
 
-<!-- ============================================================
-LEVEL 3
-Flush left
-Italic
-Headline-Style Capitalization
-=============================================================== -->
+lexis_coverage_september_segment <- subset(
+  lexis_coverage_monthly,
+  month >= as.Date("2026-08-01")
+)
 
-### Beat Generation
+lexis_coverage_september <- subset(
+  lexis_coverage_monthly,
+  month == as.Date("2026-09-01")
+)
 
-This demonstrates a Level 3 heading.
+plot_lexis_coverage_monthly <- ggplot(
+  lexis_coverage_monthly,
+  aes(x = month, y = articles)
+) +
+  geom_line(
+    data = lexis_coverage_complete,
+    color = "#00A693",
+    linewidth = 1
+  ) +
+  geom_line(
+    data = lexis_coverage_september_segment,
+    color = "#00A693",
+    linewidth = 1,
+    linetype = "dashed"
+  ) +
+  geom_point(
+    data = lexis_coverage_complete,
+    color = "#00A693",
+    size = 2.3
+  ) +
+  geom_point(
+    data = lexis_coverage_september,
+    color = "#00A693",
+    fill = "white",
+    shape = 21,
+    size = 2.8,
+    stroke = 1
+  ) +
+  scale_x_date(
+    date_breaks = "1 month",
+    date_labels = "%b %Y"
+  ) +
+  scale_y_continuous(
+    breaks = c(
+      min(lexis_coverage_monthly$articles),
+      1000, 2000, 3000, 4000
+    ),
+    labels = scales::label_comma(),
+    limits = c(min(lexis_coverage_monthly$articles), 4500),
+    expand = expansion(mult = c(0, 0))
+  ) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = paste(
+      "News Articles Mentioning Flock",
+      sep = "\n"
+    ),
+    subtitle = "Monthly Counts From a Nexis Uni News Search",
+    x = NULL,
+    y = "Number of Articles",
+    caption = paste(
+      "<b>Source:</b> Nexis Uni Analytics Export",
+      "<b>Search Terms:</b> Flock camera or Flock cameras or Flock Safety",
+      "<b>Note:</b> The dashed segment and open circle mark incomplete September results through September 27, 2026.",
+      sep = "<br>"
+    )
+  ) +
+  theme_minimal(
+    base_family = "Georgia",
+    base_size = 11
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    plot.caption = ggtext::element_markdown(hjust = 0, size = 9),
+    plot.caption.position = "plot"
+  )
 
+print(plot_lexis_coverage_monthly)
 
-<!-- ============================================================
-LEVEL 4
-Flush left
-Regular
-Sentence-style capitalization
-=============================================================== -->
+ggsave(
+  file.path(dirname(DATA_FILE), "Coverage_Over_Time_Monthly.png"),
+  plot = plot_lexis_coverage_monthly,
+  width = 8.88,
+  height = 5.5,
+  units = "in",
+  dpi = 300,
+  device = ragg::agg_png
+)
+```
 
-#### Significant figures, events, and elements
+The second piece of evidence is that the amount of news coverage that mentions Flock has increased (See Figure 4). Starting during July 2026 in the *Nexis Uni* database, similar to the Google Search metrics, news articles began to mention Flock much more frequently, rising from under 500 articles per month from January through June to over 1,000 in July, over 3,000 in August, and around 4,000 articles from September 1 through September 27, 2026 [@10000ResultsFlock]. Thus, the increase in news articles that mentioned Flock occurred in a similar time frame to the rise in unfavorable views of Flock and opposition to law enforcement's use of ALPRs (See Figures 2–4).
 
-This demonstrates a Level 4 heading.
+## Flock in Politics
 
+The last piece of evidence involves political elites. Texas State Senator Lois Kolkhorst (R) released an op-ed in August, in which she argued that "the use of Flock cameras aims to be a frightening new web of warrantless mass surveillance… One could reasonably think that we are only a pandemic away from ushering in a 'social credit score' similar to the Chinese government, which can limit its citizens’ movements based on government approval" and reported that "My colleagues in the Texas Senate are discussing an outright ban on ALPRs, and I am right there with them" [@3LoisKolkhorst]. While Kolkhorst was one of the most direct political elites to warn that Flock could curtail individual liberty, concerns about Flock were bipartisan and across the U.S., with Senators Ron Wyden (D) of Oregon, Adam Schiff (D) of California, Josh Hawley (R) of Missouri, and Governor Ron DeSantis (R) of Florida criticizing its current use or investigating its safeguards in recent months [@NEWSSensSchiff; @talcottOutControlFlorida2026; @staffChairmanHawleyInvestigates2026]. Therefore, political elites took stances against Flock in a similar window to the rise in unfavorable views of Flock and increase in media coverage (See Figures 2 and 4).
 
-<!-- ============================================================
-LEVEL 5
+# Three Pathways: Why Has This Fear Become More Prominent?
 
-For reliable visual consistency across PDF, Word, ODT,
-HTML, EPUB, and Typst, write Level 5 directly at the
-start of the paragraph in italics with a terminal period.
+This section describes three explanations for why this fear has become more prominent among some Americans. First is the media theory of fear, which argues that the media may make surveillance seem more threatening because it has an incentive to repeatedly report stories about surveillance that can generate profit and be inexpensive to cover. Second is the political elite theory of fear, which claims that political elites may make surveillance appear more threatening when they set the media agenda by investigating how law enforcement uses it, issuing public statements about its risks, and proposing laws to restrict it. Third is the political culture theory of fear, which posits that U.S. political culture about the right to privacy as an individual liberty may be influential in making surveillance seem more threatening.
+## The Media Theory of Fear
 
-This avoids Word treating Heading 5 as a separate block.
-=============================================================== -->
+Media is one possible explanation for why the fear became more prominent. As shown in Figure 4, the amount of news articles that mentioned Flock increased in July and August 2026 and remained high through September 27. Some articles within this sample have either outright argued against Flock cameras or reported opposition to them in headings such as "Flock cameras are un-American. I'm glad folks are fighting back" or "Texas privacy fight grows as Flock cameras spark Fourth of July protest" [@russellFlockCamerasAre2026; @humbleTexasPrivacyFight2026]. Coverage of Flock has also highlighted alleged misuse, such as a police officer making more than 700 inquiries to allegedly stalk his estranged wife or a police officer allegedly using more than 2,000 Flock searches to track his ex-girlfriend [@russellFlockCamerasAre2026]. Therefore, some media outlets have presented Flock in ways that could invoke fear.
 
-*Kerouac as the leader.* The role of founding Beat Generation poet was
-filled by Jack Kerouac. This Level 5 heading remains run-in across the
-major output formats.
+This coverage could increase fear of surveillance of ordinary people for law enforcement. Romer et al. [-@romerTelevisionNewsCultivation2003] find that watching local news was associated with a greater fear of crime after controlling for crime rates. This finding aligns with the media theory of fear, in which (1) people rely on and tend to trust news in terms of information and (2) news organizations have incentives to cover subjects that individuals might fear, since such coverage can be attention-grabbing and generate profit while often being inexpensive to report [@MediaFear]. One can thus apply this model to the topic at hand, such that repeated reports in the media of officers allegedly misusing Flock may lead people who trust the news to fear that law enforcement could misuse surveillance of ordinary people.
 
+> **Hypothesis 1:** If Americans are exposed to sensational media coverage of officers allegedly misusing Flock, then they will be more likely to fear surveillance of ordinary people for law enforcement than Americans who are not exposed to such coverage.
 
-<!-- ============================================================
-BLOCK QUOTATION
-=============================================================== -->
+## The Political Elite Theory of Fear
 
-# Block Quotation Example
+Another possible explanation for why the fear became more prominent is the action of political elites. From the East Coast to the West Coast, Democrats and Republicans have made statements, opened investigations, and proposed policies aimed at controlling or removing Flock cameras [@3LoisKolkhorst; @NEWSSensSchiff; @talcottOutControlFlorida2026; @staffChairmanHawleyInvestigates2026]. These negative positions about Flock have had various justifications, ranging from fear of misuse by individual law enforcement officers to warning that surveillance by the government could limit individual liberty [@3LoisKolkhorst; @staffChairmanHawleyInvestigates2026]. In so doing, politicians may have connected Flock cameras to fears that law enforcement might misuse surveillance of ordinary people or limit individual liberty.
 
-Normal double-spaced body text appears before the block quotation.
+This binding of the threat of misuse or a loss of liberty to Flock cameras could increase fear of surveillance of ordinary people for law enforcement. Kaufmann [-@kaufmannThreatInflationFailure], in describing how the Bush administration sold the Iraq war to the American public, identifies that the administration inflated the threat that Saddam Hussein posed by (1) setting the media agenda by focusing on the threat Saddam Hussein posed to Americans in public speeches and statements, (2) publicizing pieces of evidence that did favor their views while withholding evidence that did not, and (3) leveraging the White House’s credibility on foreign policy [@PoliticiansFear]. When applied to this topic, U.S. politicians could make surveillance of ordinary people for law enforcement seem more threatening if news outlets report their statements and actions against Flock to Americans who regard the politicians as credible.
 
-> This is an example of a block quotation. A prose quotation of five or
-> more lines or more than one hundred words should be blocked. It begins
-> on a new line, appears without quotation marks, is indented from the
-> left margin, and is single-spaced. [@smith2024, 50]
+> **Hypothesis 2:** If Americans are exposed to news coverage of Flock that quotes politicians warning about its risks, then they will be more likely to fear surveillance of ordinary people for law enforcement than Americans who are exposed to similar coverage without politicians’ warnings.
 
-Normal double-spaced body text resumes here.
+## The Political Culture Theory of Fear
 
+Political culture is the last possible explanation for why the fear might have become more prominent. In surveys from earlier decades, Westin [-@westinSocialPoliticalDimensions2003] finds that Americans’ concern about threats to personal privacy was high, rising from 64 percent in 1978 to 84 percent in 1995, in which 51 percent of Americans identified the government as the greatest potential threat to privacy. More recently, about 70 percent of Americans who responded to the World Values Survey Wave 7 in 2017 said the government probably or definitely should not have a right to collect information about people without their knowledge [@evs/wvsJointEVSWVS2024]. Therefore, many Americans were concerned about government intrusions on privacy both decades ago and in 2017, before the current debate about Flock.
 
-<!-- ============================================================
-CONCLUSION
-=============================================================== -->
+This ingrained belief in privacy could thus influence the attitudes of some Americans toward Flock. The political culture theory of fear suggests that politicians and news outlets may share and express fears already held by a great number of the population [@PoliticalCultureFear]. For example, Gibson and Howard [-@gibsonRussianAntiSemitismScapegoating2007] found that attitudes toward Jews changed little during the turmoil in Russia in the 1990s, even though some politicians blamed Jews for the country's problems. On this basis, they argued that politicians’ appeals depend on beliefs the public already holds, since prejudice against Jews was not widespread enough in Russia for those appeals to succeed. Using this model, an existing concern about government intrusions on privacy may make some Americans more likely to fear surveillance of ordinary people for law enforcement when Flock receives more attention.
 
-# Conclusion
-
-Write your conclusion here.
-
+> **Hypothesis 3:** If Americans already regard privacy from government intrusion as an important individual liberty, then they will be more likely to fear surveillance of ordinary people for law enforcement when they learn about Flock than Americans who do not hold that belief.
 
 <!-- ============================================================
 REFERENCES — PDF
@@ -1450,11 +1394,6 @@ END PDF REFERENCE SPACING
 OPTIONAL FOOTNOTES
 ===============================================================
 
-Author-Date papers may still use footnotes for supplemental commentary.
-
-Quarto syntax:
-
-Here is a sentence with a supplemental note.^[This is the footnote text.]
 
 =============================================================== -->
 
